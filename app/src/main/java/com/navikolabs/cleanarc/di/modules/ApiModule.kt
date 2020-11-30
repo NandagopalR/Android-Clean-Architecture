@@ -1,6 +1,7 @@
 package com.navikolabs.cleanarc.di.modules
 
 import com.navikolabs.cleanarc.data.api.AppApi
+import com.navikolabs.cleanarc.data.preferences.AppPreference
 import com.navikolabs.cleanarc.data.repo.AppRepoImpl
 import com.navikolabs.cleanarc.domain.repository.AppRepo
 import dagger.Module
@@ -19,7 +20,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun bindsAppRepoImpl(appApi: AppApi): AppRepo {
-        return AppRepoImpl(appApi)
+    fun bindsAppRepoImpl(appApi: AppApi, appPreference: AppPreference): AppRepo {
+        return AppRepoImpl(appApi, appPreference)
     }
 }

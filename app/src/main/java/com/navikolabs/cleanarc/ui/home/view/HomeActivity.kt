@@ -37,11 +37,10 @@ class HomeActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
         ButterKnife.bind(this)
         bindViewModel()
-        fetchUsersData()
         adapter = UsersAdapter(this)
         rvUsers.layoutManager = LinearLayoutManager(this)
         rvUsers.adapter = adapter
-        homeViewModel.fetchUsers()
+        fetchUsersData()
     }
 
     private fun bindViewModel() {
@@ -49,7 +48,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun fetchUsersData() {
-        homeViewModel.viewState.observe(this, Observer { viewState ->
+        homeViewModel.fetchUsers().observe(this, Observer { viewState ->
             progressBar.visibility = View.GONE
             when (viewState.status) {
                 ResponseStatus.SUCCESS -> {
